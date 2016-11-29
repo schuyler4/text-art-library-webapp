@@ -1,0 +1,27 @@
+<h1> Create A New Text Art </h1>
+
+<% if @art.errors.any? %>
+  <% @art.errors.full_messages.each do |msg| %>
+        <h3><%= msg %></h3>
+  <% end %>
+<% end %>
+
+<%= form_for :art, url: {:action=>"create", :controller=>"art"} do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :text %>
+    <%= f.text_area :text %>
+  </div>
+
+  <div>
+    <%= f.hidden_field :rating, value: 0 %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

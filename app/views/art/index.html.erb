@@ -1,0 +1,8 @@
+<h1> Top Art </h1>
+
+<h3>
+  <%=link_to "Create A Text Art", new_art_path %> 
+</h3>
+<% @art.each do |art| %>
+  <h1><%=link_to art.title, art_path(art) %> <%= art.rating %></h1>
+<% end %>

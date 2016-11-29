@@ -1,0 +1,11 @@
+<h1> <%= @art.title %> </h1>
+<pre> <%= @art.text %> </pre>
+<h3> <%= @art.rating %> </h3>
+
+<%= form_for :art, method: :patch, url: vote_up_art_path do |f| %>
+  <div> <%= f.submit "Vote Up"%> </div>
+<% end %>
+
+<%= form_for :art, method: :patch, url: vote_down_art_path do |f| %>
+  <div> <%= f.submit "Vote Down" %></div>
+<% end %>
