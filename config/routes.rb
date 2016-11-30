@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'home/index'
+  root 'users#new'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :art do
@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'home#index'
+  get 'signup' => 'users#new'
+  resources :users
 end
