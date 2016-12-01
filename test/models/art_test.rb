@@ -6,7 +6,7 @@ class ArtTest < ActiveSupport::TestCase
     @art = Art.new(title: 'Smile Face', text: ':)', rating: 0)
   end
 
-  test "valid user" do
+  def test_valid_art
     assert @art.valid?
   end
 

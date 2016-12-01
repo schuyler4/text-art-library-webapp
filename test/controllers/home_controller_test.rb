@@ -1,9 +1,8 @@
 require 'test_helper'
 
 class HomeControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get home_index_url
+  def get_home
+    get root_path
     assert_response :success
   end
-
 end

@@ -1,4 +1,5 @@
 <h1> <%= @art.title %> </h1>
+<h4> by: <%= @art.user %>
 <pre> <%= @art.text %> </pre>
 <h3> <%= @art.rating %> </h3>
 
@@ -8,4 +9,19 @@
 
 <%= form_for :art, method: :patch, url: vote_down_art_path do |f| %>
   <div> <%= f.submit "Vote Down" %></div>
+<% end %>
+
+<h2>Comments</h2>
+<% if current_user %>
+    <%= form_for([@art, @art.comments.build]) do |f| %>
+      <%= f.text_area :body %>
+      <%= f.submit %>
+    <% end %>
+<% else %>
+  <h4> You Must Be logged in to comment </h4>
+<% end %>
+
+<% @art.comments.each do |comment| %>
+  <h4><%= comment.user_name %></h4>
+  <p><%= comment.body %></p>
 <% end %>
