@@ -1,7 +1,7 @@
 <h1> <%= @art.title %> </h1>
-<h4> by: <%= @art.user %>
 <pre> <%= @art.text %> </pre>
 <h3> <%= @art.rating %> </h3>
+<h3> created by: <%= @art.user.first_name %> </h3>
 
 <%= form_for :art, method: :patch, url: vote_up_art_path do |f| %>
   <div> <%= f.submit "Vote Up"%> </div>

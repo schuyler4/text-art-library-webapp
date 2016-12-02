@@ -2,11 +2,19 @@ class ArtController < ApplicationController
   before_action :require_login, only: [:create, :vote_up, :vote_down, :new]
 
   def index
-    @art = Art.order('rating').limit(20)
+    @art = Art.all
+    if params[:search] != ''
+      if params[:search]
+        @art = Art.search(params[:search]).order("created_at DESC")
+      else
+        @art = Art.all
+      end
+    end
   end
 
   def show
     @art = Art.find(params[:id])
+    puts @art.user.first_name
   end
 
   def new
@@ -14,13 +22,8 @@ class ArtController < ApplicationController
   end
 
   def create
-    puts "panda"
-    puts current_user
-    puts "panda"
-
     @art = Art.new(art_param)
     @art.user = current_user
-    @art.user_name = current_user.first_name
 
     if @art.save
       redirect_to @art

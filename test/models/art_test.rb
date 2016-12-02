@@ -3,29 +3,36 @@ require 'test_helper'
 class ArtTest < ActiveSupport::TestCase
 
   def setup
-    @art = Art.new(title: 'Smile Face', text: ':)', rating: 0)
+    user = User.new(first_name: 'joe', last_name: 'bob', email:
+     'joe@hotmail.com', password:'ihaveagoodpassword')
+    @art = Art.new(title: 'Smile Face', text: ':)', rating: 0, user: user)
   end
 
   def test_valid_art
     assert @art.valid?
   end
 
-  test "invalid without title" do
+  def test_invalid_title
     @art.title = nil
-    refute @art.valid? "saved user without title"
+    refute @art.valid? "saved art without title"
     assert_not_nil @art.errors[:title], "no validation error for title present"
   end
 
-  test "invalid without text" do
+  def test_invalid_text
     @art.text = nil
-    refute @art.valid? "saved user without text"
+    refute @art.valid? "saved art without text"
     assert_not_nil @art.errors[:text], "no validation error for text present"
   end
 
-  test "invalid without rating" do
+  def test_invalid_rating
     @art.rating = nil
-    refute @art.valid? "saved user without rating"
+    refute @art.valid? "saved art without rating"
     assert_not_nil @art.errors[:rating], "no validation error for reating present"
   end
 
+  def test_invalid_user
+    @art.user = nil
+    refute @art.valid? "saved art without rating"
+    assert_not_nil @art.errors[:user], "no validation error for reating present"
+  end
 end

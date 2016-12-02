@@ -1,8 +1,19 @@
 <h1> Top Art </h1>
 
 <h3>
-  <%=link_to "Create A Text Art", new_art_path %> 
+  <%=link_to "Create A Text Art", new_art_path %>
 </h3>
-<% @art.each do |art| %>
-  <h1><%=link_to art.title, art_path(art) %> <%= art.rating %></h1>
+<%= form_tag(art_index_path, :method=> 'get') do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Art" %>
+  <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+<% if @art != Art.all %>
+  <% @art.all.each do |art| %>
+    <h4><%= link_to art.title, art %></h4>
+  <% end %>
+<% end %>
+
+<% if @art.blank? %>
+  <h4>Nothing Was Found</h4>
 <% end %>
