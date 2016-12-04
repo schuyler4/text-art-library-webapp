@@ -1,0 +1,11 @@
+<%= link_to 'Back', current_user %>
+<%= form_for :art, url: art_path(@art), method: :patch do |f| %>
+  <% if @art.errors.any? %>
+    <% @art.errors.full_messages.each do |msg| %>
+      <h3><%= msg %></h3>
+    <% end %>
+  <% end %>
+  <%= f.text_field :title %>
+  <%= f.text_area :text %>
+  <%= f.submit %>
+<% end %>

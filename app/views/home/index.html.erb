@@ -1,1 +1,9 @@
 <h1> Text Art Library </h1>
+
+<% if current_user %>
+  <%= link_to "Log Out", {:controller=> "sessions", :action=> "destroy"}, :method => :delete %> |
+  <%= link_to "Profile", current_user %>
+<% else %>
+  <%= link_to "Log In", :controller=> "sessions", :action=> "new" %>
+  <%= link_to "Sign Up", :controller=> "users", :action=> "new"%>
+<% end %>

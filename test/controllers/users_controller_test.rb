@@ -1,23 +1,27 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  def test_get_signup
+  def setup
+    @user = {user: {
+      first_name: 'Tod',
+      last_name: 'Rod',
+      email: 'Tod@poopmail.com',
+      password: '##$$##$$$##$$'}}
+  end
+
+  def test_signup
     get signup_path
     assert_response :success
   end
 
-  def test_get_login
-    get login_path
-    assert_response :success
+  def test_create
+    post users_path, params: @user
+    assert_redirected_to root_path
   end
 
-  def test_post_signup
-    @params = {post: {first_name: "janet",
-      last_name: "",
-      email: "jr@email.com",
-      password: ""}}
-    post user_create_path, params: @params
+  def test_show
+    art = arts(:one)
+    get user_path(art)
     assert_response :success
   end
-
 end

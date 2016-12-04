@@ -14,7 +14,6 @@ class ArtController < ApplicationController
 
   def show
     @art = Art.find(params[:id])
-    puts @art.user.first_name
   end
 
   def new
@@ -32,6 +31,20 @@ class ArtController < ApplicationController
     end
   end
 
+  def edit
+    @art = Art.find(params[:id])
+  end
+
+  def update
+    @art = Art.find(params[:id])
+
+    if @art.update(art_param)
+      redirect_to @art
+    else
+      render 'edit'
+    end
+  end
+
   def vote_up
     @art = Art.find(params[:id])
     @art.rating += 1
@@ -46,6 +59,13 @@ class ArtController < ApplicationController
     @art.save
 
     redirect_to @art
+  end
+
+  def destroy
+    @art = Art.find(params[:id])
+    @art.destroy
+
+    redirect_to current_user
   end
 
   private
