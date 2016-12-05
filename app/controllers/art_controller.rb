@@ -1,5 +1,8 @@
 class ArtController < ApplicationController
-  before_action :require_login, only: [:create, :vote_up, :vote_down, :new]
+  before_action :require_login, only: [:create, :vote_up, :vote_down, :new,
+    :new_animated, :create_animated_art]
+
+  include ActionController::Live
 
   def index
     @art = Art.all
@@ -44,6 +47,7 @@ class ArtController < ApplicationController
       render 'edit'
     end
   end
+
 
   def vote_up
     @art = Art.find(params[:id])

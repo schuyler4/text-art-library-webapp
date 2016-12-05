@@ -1,0 +1,8 @@
+<div class="container">
+    <h1><%= @animated_art.title %></h1>
+
+    <%= form_for([@animated_art, new_animated_art_slide_path]) do |f| %>
+      <%= f.text_area :text %>
+      <%= f.submit %>
+    <% end %>
+</div>

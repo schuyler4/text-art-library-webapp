@@ -1,9 +1,11 @@
-<h1> Text Art Library </h1>
-
-<% if current_user %>
-  <%= link_to "Log Out", {:controller=> "sessions", :action=> "destroy"}, :method => :delete %> |
-  <%= link_to "Profile", current_user %>
-<% else %>
-  <%= link_to "Log In", :controller=> "sessions", :action=> "new" %>
-  <%= link_to "Sign Up", :controller=> "users", :action=> "new"%>
-<% end %>
+<div class="container">
+  <h3> Top Art </h3>
+  <ul class="list-group">
+    <% @art.each do |art| %>
+      <li class="list-group-item">
+        <%= link_to art.title, art %>
+        <span class="badge"><%= art.rating %></span>
+      </li>
+    <% end %>
+  </ul>
+</div>

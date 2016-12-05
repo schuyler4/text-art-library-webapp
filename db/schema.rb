@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202042209) do
+ActiveRecord::Schema.define(version: 20161205040041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "animated_art", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "title"
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_animated_art_on_user_id", using: :btree
+  end
 
   create_table "arts", force: :cascade do |t|
     t.string   "title"
@@ -36,6 +44,14 @@ ActiveRecord::Schema.define(version: 20161202042209) do
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
+  create_table "slides", force: :cascade do |t|
+    t.string   "text"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "live_art_id"
+    t.index ["live_art_id"], name: "index_slides_on_live_art_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -45,7 +61,9 @@ ActiveRecord::Schema.define(version: 20161202042209) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "animated_art", "users"
   add_foreign_key "arts", "users"
   add_foreign_key "comments", "arts"
   add_foreign_key "comments", "users"
+  add_foreign_key "slides", "animated_art", column: "live_art_id"
 end

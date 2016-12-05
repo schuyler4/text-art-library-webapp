@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :comments
   has_many :art
+  has_many :live_art
 
   has_secure_password
 
