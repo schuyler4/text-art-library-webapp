@@ -29,7 +29,7 @@ class ArtController < ApplicationController
 
     if @art.save
       redirect_to @art
-    else
+    else 
       render 'new'
     end
   end

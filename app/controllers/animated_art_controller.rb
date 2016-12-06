@@ -1,6 +1,6 @@
 class AnimatedArtController < ApplicationController
   def new
-    @animated_art = AnimatedArts.new
+    @animated_art = AnimatedArt.new
   end
 
   def show
