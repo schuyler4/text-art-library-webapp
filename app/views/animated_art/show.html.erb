@@ -1,8 +1,8 @@
 <div class="container">
     <h1><%= @animated_art.title %></h1>
 
-    <%= form_for([@animated_art, new_animated_art_slide_path]) do |f| %>
-      <%= f.text_area :text %>
-      <%= f.submit %>
+    <% @animated_art.slides.each do |f| %>
+      <h1> panda </h1>
+      <pre> <%= f.text %></pre>
     <% end %>
 </div>

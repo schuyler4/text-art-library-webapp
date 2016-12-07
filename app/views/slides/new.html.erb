@@ -1,0 +1,15 @@
+<div class="container">
+  <%= form_for [@animated_art, @animated_art.slides.build] do |f| %>
+
+  <% if @slide.errors.any? %>
+    <% @slide.errors.full_messages.each do |msg| %>
+          <h3><%= msg %></h3>
+    <% end %>
+  <% end %>
+
+    <%= f.text_area :text %>
+    <%= f.submit %>
+  <% end %>
+</div>
+
+<%= link_to @animated_art.title ,animated_art_path(@animated_art) %>

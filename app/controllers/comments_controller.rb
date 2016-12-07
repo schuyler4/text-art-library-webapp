@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   def create
     @art = Art.find(params[:art_id])
 
-    @comment = @art.comments.create(comment_param)
+    @comment = @art.comments.create(comment_params)
     @comment.user = current_user
     @comment.user_name = current_user.first_name
 
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
   end
 
   private
-    def comment_param
+    def comment_params
       params.require(:comment).permit(:user, :body, :art)
     end
 end

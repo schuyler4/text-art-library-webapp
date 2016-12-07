@@ -1,13 +1,4 @@
 <div class="container">
-  <% @user.art.each do |art| %>
-    <h1><%= art.title %></h1>
-    <%= link_to "Show", art %> |
-    <% if current_user.first_name == @user.first_name %>
-      <%= link_to "Edit", [:edit, art] %> |
-      <%= link_to "Delete", art_path(art), method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-    <pre><%= art.text %></pre>
-  <% end %>
   <%= link_to "New Art", new_art_path %>
   <%= link_to "New Aniated Art", new_animated_art_path %>
 </div>

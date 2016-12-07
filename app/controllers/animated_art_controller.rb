@@ -1,4 +1,8 @@
 class AnimatedArtController < ApplicationController
+  def index
+    @animated_art = AnimatedArt.all
+  end
+
   def new
     @animated_art = AnimatedArt.new
   end
@@ -9,10 +13,9 @@ class AnimatedArtController < ApplicationController
 
   def create
     @animated_art = AnimatedArt.new(animated_art_parms)
-    @animated_art.user = current_user
 
     if @animated_art.save
-      redirect_to animated_art_path(@animated_art)
+      redirect_to new_animated_art_slide_path(@animated_art)
     else
       render 'new'
     end

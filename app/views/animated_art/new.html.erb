@@ -7,7 +7,7 @@
     <% end %>
   <% end %>
 
-  <%= form_for :live_art, url: {:action=>"create", :controller=>"animated_art"} do |f| %>
+  <%= form_for :animated_art, url: {:action=>"create", :controller=>"animated_art"} do |f| %>
       <%= f.text_field :title, class: "form-control", placeholder: "Title" %>
       <%= f.submit %>
   <% end %>

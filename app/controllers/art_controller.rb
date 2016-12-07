@@ -5,6 +5,7 @@ class ArtController < ApplicationController
   include ActionController::Live
 
   def index
+    puts "this is the index"
     @art = Art.all
     if params[:search] != ''
       if params[:search]
@@ -29,7 +30,7 @@ class ArtController < ApplicationController
 
     if @art.save
       redirect_to @art
-    else 
+    else
       render 'new'
     end
   end

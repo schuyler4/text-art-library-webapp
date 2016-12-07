@@ -1,20 +1,25 @@
 class SlidesController < ApplicationController
-  before_action :require_login, only: [:create]
+  before_action :require_login
+
+  def new
+    @animated_art = AnimatedArt.find(params[:animated_art_id])
+    @slide = Slide.new
+  end
 
   def create
-    @animated_art = LiveArt.find(params[:id])
-
-    @slide = @art.comments.create(comment_param)
+    @animated_art = AnimatedArt.find(params[:animated_art_id])
+    puts @animated_art
+    @slide = @animated_art.slides.create(slide_params)
 
     if @slide.save
-      redirect_to @animated_art
+      redirect_to new_animated_art_slide_path(@animated_art)
     else
-      redirect_to @animated_art
+      render 'new'
     end
   end
 
   private
     def slide_params
-      params.require(:slides).permit(:text)
+      params.require(:slide).permit(:text)
     end
 end

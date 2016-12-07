@@ -1,8 +1,7 @@
-class CreateArts < ActiveRecord::Migration[5.0]
+class CreateAnimatedArts < ActiveRecord::Migration[5.0]
   def change
-    create_table :arts do |t|
+    create_table :animated_arts do |t|
       t.string :title
-      t.text :text
       t.integer :rating
 
       t.timestamps
